@@ -1,0 +1,25 @@
+openapi: 4.0
+info:
+  title: medprompt
+  description: Microsoft showed how the composition of several prompting strategies into a method that we refer to as Medprompt. Medprompt composes three distinct strategies together -- including dynamic few-shot selection, self-generated chain of thought, and choice-shuffle ensembling.
+  version: 'v1'
+servers:
+  - url: https://chat.openai.com/g/g-9JnUkxOis-medprompt
+paths:
+  /qr/{qr_data}:
+    get:
+      operationId: medprompt
+      summary: answer medical question
+      parameters:
+        - in: path
+          name: question
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/answer.json'
